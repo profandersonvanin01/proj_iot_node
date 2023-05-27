@@ -39,4 +39,11 @@ parser.on('data',function(data){
     io.emit('data',data)
 })
 
+parser.on('web',function(btn){
+    var dado_web = btn.value
+    console.log(dado_web)
+    SerialPort.write(dado_web)
+    //port.write(dado_web)    
+})
+
 app.listen(3000)

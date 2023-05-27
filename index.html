@@ -25,11 +25,19 @@
             <canvas id="meugrafico" height="100"></canvas>
           </div>
           <div id="exemplo"></div>
+          <div class="container text-center">
+            <div class="row">
+              <div class="col">
+                <button type="button" class="btn btn-primary" value="a">Acender o Led</button>
+              </div>
+              <div class="col">
+                <button type="button" class="btn btn-danger" value="b">Apagar o Led</button> 
+              </div>              
+            </div>
+          </div>          
       </div>
     
     
-    
-    <!-- <script src="grafico.js"></script> -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
@@ -44,8 +52,6 @@
             counter = counter + 2
             myChart.update()
         })
-
-
         var ctx = document.getElementById('meugrafico').getContext('2d')
 
         var myChart = new Chart(ctx, {
@@ -72,6 +78,17 @@
             }
             }
         });
+
+        $("button").click(function(){
+            const call = io()
+            var button = $(this).val()
+            console.log(button)
+            call.emit('btnAction',{
+                value: button.toString()
+            })
+        })
+
+
     </script>
       
     
